@@ -1,0 +1,21 @@
+body{
+    background-color: gray;
+    font-family: cursive;
+    color: #000;
+}
+
+.card{
+    text-align: center;
+}
+
+input{
+    padding: 10px 75px;
+    margin: 7px 0px;
+    border-radius: 10px;
+}
+
+button{
+    padding: 10px 60px;
+    margin-top: 20px;
+    border-radius: 7px;
+}
