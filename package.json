@@ -33,6 +33,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "firebase": "^7.13.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
