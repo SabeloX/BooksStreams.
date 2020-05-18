@@ -1,0 +1,13 @@
+.about{
+    text-align: left;
+    width: 500px;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px;
+}
+
+.profile-container{
+    display: grid;
+    grid-template-columns: 25%  75%;
+}

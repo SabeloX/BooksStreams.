@@ -1,14 +1,14 @@
 import { applyMiddleware, createStore } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import {verifyAuth} from './redux/actions/';
-import rootReducer from './redux/reducers/';
+import thunk from 'redux-thunk';
+import {verifyAuth} from './store/actions/';
+import rootReducer from './store/reducers/';
 
 // This gets called everytime a user refreshes the app page
 const configureStore = (persistedState) =>{
     const store = createStore(
         rootReducer,
         persistedState,
-        applyMiddleware(thunkMiddleware)
+        applyMiddleware(thunk)
     );
     store.dispatch(verifyAuth);
     return store;

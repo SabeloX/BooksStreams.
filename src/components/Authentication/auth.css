@@ -1,5 +1,4 @@
 body{
-    background-color: gray;
     font-family: cursive;
     color: #000;
 }
@@ -18,4 +17,34 @@ button{
     padding: 10px 60px;
     margin-top: 20px;
     border-radius: 7px;
+}
+
+.load{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 15%;
+    left: 33%;
+    background: #000;
+    border: 0.5px solid black;
+    border-radius: 50%;
+    animation: expands 1s infinite;
+}
+
+@keyframes expands{
+    0%{
+        transform: scale(0.75, 0.75);
+    }
+    25%{
+        transform: scale(0.5, 0.5);
+    }
+    50%{
+        transform: scale(0.25, 0.25);
+    }
+    75%{
+        transform: scale(0.5, 0.5);
+    }
+    100%{
+        transform: scale(0.75, 0.75);
+    }
 }

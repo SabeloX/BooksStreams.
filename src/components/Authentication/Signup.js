@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { signupUser } from '../../redux/actions';
+import { signupUser, googleLogin, facebookLogin } from '../../store/actions';
 import { connect } from 'react-redux';
 import './auth.css';
+import SignupForm from './SignupForm'
 
 const Signup = (props) =>{
 
@@ -11,16 +12,25 @@ const Signup = (props) =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    const [userExists, setUserExists] = useState("");
     const { isAuthenticated } = props;
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        password === confirmPassword ? (
+        if(password === confirmPassword){
             props.dispatch(signupUser(email, password))
-        ) : (
+        }
+        else{
             document.getElementById('error').innerHTML = "<small>Passwords do not match</small>"
-        )
+        }
+    };
+
+    const handleGoogleClick = (e) =>{
+        props.dispatch(googleLogin());
+    };
+
+    const handleFacebookClick = (e) =>{
+        props.dispatch(facebookLogin());
     };
 
     if(isAuthenticated){
@@ -29,24 +39,15 @@ const Signup = (props) =>{
     else{
         return(
             <div>
-                <div className='container'>
-                    <div className='card'>
-                        <div id='heading'>
-                            <h2>Signup</h2>
-                        </div>
-                        <div>
-                            <form onSubmit={handleSubmit}>
-                                <input type='text' placeholder='Name' id='name' onChange={(e) =>setName(e.target.value)} /><br/>
-                                <input type='text' placeholder="Surname" id='surname' onChange={(e) =>setSurname(e.target.value)} /><br/>
-                                <input type='email' placeholder='Email' id='email' onChange={(e) =>setEmail(e.target.value)} /><br/>
-                                <input type='password' placeholder='Password' id='password' onChange={(e) =>setPassword(e.target.value)} /><br/>
-                                <input type='password' placeholder='Confirm Password' id='confirm-password' onChange={(e) =>setConfirmPassword(e.target.value)} /><br/>
-                                <div style={{color: 'rgb(120,0,0)'}} id='error'></div>
-                                <button type="submit">Signup</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <SignupForm
+                    setConfirmPassword={setConfirmPassword}
+                    setEmail={setEmail}
+                    setName={setName}
+                    setPassword={setPassword}
+                    setSurname={setSurname}
+                    handleGoogleClick={handleGoogleClick}
+                    handleSubmit={handleSubmit}
+                />
             </div>
         );
     }
@@ -54,7 +55,8 @@ const Signup = (props) =>{
 
 const mapStateToProps = (state) =>{
     return{
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        signupError: state.auth.signupError
     }
 }
 

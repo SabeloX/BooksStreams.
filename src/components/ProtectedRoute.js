@@ -1,18 +1,25 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux'
 
-const ProtectedRoute = ({ component: Component, isAuthenticated, isVerifying, ...rest }) =>(
+const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) =>(
     <Route
         {...rest}
         render={props => isAuthenticated ? 
             <Component {...props}/> : 
             <Redirect to={{
                     pathname: '/home',
-                    state: { from: props.location}
+                    state: {from: props.location}
                 }}
             />
         }
     />
 );
 
-export default ProtectedRoute;
+const mapStateToProps = (state) =>{
+    return{
+        isAuthenticated: state.auth.isAuthenticated
+    }
+}
+
+export default connect(mapStateToProps)(ProtectedRoute);

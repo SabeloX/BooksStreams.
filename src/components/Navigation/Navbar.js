@@ -2,32 +2,33 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import './navbar.css';
 import { connect } from 'react-redux';
-import { logoutUser } from '../../redux/actions'
-
 
 const Navbar = (props) =>{
+
     const { isAuthenticated } = props;
-    const handleLogout = () =>{
-        return props.dispatch(logoutUser());
+
+    const handleOpen = (e) =>{
+        document.getElementById('sidebar').style.width = '250px';
+        document.getElementById('routes').style.marginRight = '250px';
     }
+
+    
     if(isAuthenticated){
         return(
-            <div className='navbar'>
-                <ul>
-                    <li><Link to='/'>BooksStreams</Link></li>
-                    <li><Link onClick={handleLogout}>Logout</Link></li>
-                </ul>
+            <div>
+                <div className='navbar'>
+                    <Link id='logo' to='/'>BooksStreams</Link>
+                    <Link onClick={handleOpen}>Menu</Link>
+                </div>
             </div>
         );
     }
     else{
         return(
             <div className='navbar'>
-                <ul>
-                    <li><Link to='/home'>BooksStreams</Link></li>
-                    <li><Link to='/login'>Login</Link></li>
-                    <li><Link to='/signup'>Signup</Link></li>
-                </ul>
+                <Link id='logo' to='/home'>BooksStreams</Link>
+                <Link to='/login'>Login</Link>
+                <Link to='/signup'>Signup</Link>
             </div>
         );
     }

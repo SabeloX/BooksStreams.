@@ -1,29 +1,19 @@
+body{
+  margin: 0;
+  background-color: #fff;
+}
+
 .App {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-body::-webkit-scrollbar{
-  scroll-padding: 0;
-}
-
-#navbar{
-  flex: 1
+  display: grid;
+  grid-template-rows: auto auto auto;
+  row-gap: 50px;
 }
 
 #routes{
-  flex: 2
+  overflow: hidden;
 }
 
 #footer{
-  flex: 1;
-  position: sticky;
   bottom: 0;
-}
-
-@media screen and (max-width: 479px){
-  .navbar li{
-    margin-bottom: 10px;
-  }
 }
