@@ -134,7 +134,7 @@ export const signupUser = (email, password) => dispatch =>{
     .then(user =>{
         dispatch(signupReceived(user));
         //add the user to database on success
-        //take user details as an object credentials {name,surname,age, email, age,}
+        //take user details as an object newUser = {name, surname, age, email,}
     })
     .catch(error =>{
         if(error.code === 'auth/email-already-in-use'){
