@@ -39,7 +39,7 @@
     "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
-    "firebase": "^10.12.2",
+    "firebase": "^12.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
